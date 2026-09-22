@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 export function Modal({
@@ -23,7 +24,10 @@ export function Modal({
   }, [open, onClose]);
 
   if (!open) return null;
-  return (
+  // Portal to document.body: escapes transformed ancestors (e.g. the page
+  // entrance animation), so `fixed inset-0` is always the true viewport.
+  // React context (store, theme) still flows through portals.
+  return createPortal(
     <div
       className="noor-overlay fixed inset-0 z-[60] flex overflow-y-auto bg-black/60 p-4"
       onClick={onClose}
@@ -47,6 +51,7 @@ export function Modal({
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
