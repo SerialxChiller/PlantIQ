@@ -25,14 +25,14 @@ export function Modal({
   if (!open) return null;
   return (
     <div
-      className="noor-overlay fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4"
+      className="noor-overlay fixed inset-0 z-[60] flex overflow-y-auto bg-black/60 p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
       <div
-        className="noor-modal w-full max-w-md rounded-lg border border-[var(--border-strong)] bg-[var(--panel)] p-5"
+        className="noor-modal m-auto w-full max-w-md rounded-lg border border-[var(--border-strong)] bg-[var(--panel)] p-5"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between gap-3">
